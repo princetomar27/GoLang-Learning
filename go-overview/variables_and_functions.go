@@ -18,6 +18,8 @@ func main(){
 	whatWasSaid,age,measure := saySomething()
 	
 	fmt.Println(whatWasSaid,age,measure)
+
+	pointersMain()
 }
 
 func saySomething() (string,int,string){
