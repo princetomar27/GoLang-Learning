@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
 )
 
 var s = "Twenty One"
@@ -12,6 +13,7 @@ type User struct {
 	Phone  int
 	Age    int
 	Gender string
+	Birth  time.Time
 }
 
 func typesAndStructs() {
