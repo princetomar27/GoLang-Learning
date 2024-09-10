@@ -15,6 +15,10 @@ func (person *myStruct) decreaseAge() int {
 	return person.Age - 10
 }
 
+func (person *myStruct) increaseAge() int {
+	return person.Age + 10
+}
+
 func structWithFunc() {
 
 	var prince myStruct
@@ -25,6 +29,7 @@ func structWithFunc() {
 	fmt.Println(prince)
 	fmt.Println(prince.printNameAndAge())
 	fmt.Println(prince.decreaseAge())
+	fmt.Println(prince.increaseAge())
 	fmt.Println("Current Age is : ", prince.Age)
 }
 
