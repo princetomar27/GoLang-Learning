@@ -27,14 +27,14 @@ func typesAndStructs() {
 	var user2 User
 
 	user2 = User{
-		Name:   "Tanisha Tomar",
+		Name:   "x",
 		Phone:  9191919192,
 		Age:    18,
 		Gender: "female",
 	}
 
 	user := User{
-		Name:   "Prince Tomar",
+		Name:   "Y",
 		Phone:  9191919191,
 		Age:    21,
 		Gender: "male",

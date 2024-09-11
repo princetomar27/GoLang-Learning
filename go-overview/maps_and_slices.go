@@ -1,10 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 type Person struct {
 	Name string
 	Age  int
+}
+
+type Human struct {
+	Name      string
+	Age       int
+	behaviour string
 }
 
 func main() {
@@ -20,4 +29,39 @@ func main() {
 	fmt.Println(userMap["g"])
 	//myMap := make(map[string]string)
 
+	humanMap := make(map[string]Human)
+
+	humanMap["Prince"] = Human{
+		"Prince Tomar",
+		21,
+		"Calm",
+	}
+
+	humanMap["Tanisha"] = Human{"Tanisha", 18, "Cheerful"}
+
+	fmt.Println(humanMap)
+
+	var mySlice []string
+
+	mySlice = append(mySlice, "Prince")
+	mySlice = append(mySlice, "Tanisha")
+	fmt.Println(mySlice)
+
+	fmt.Println(mySlice[1])
+
+	var myInts []int
+
+	myInts = append(myInts, 4)
+	myInts = append(myInts, 2)
+	myInts = append(myInts, 3)
+	myInts = append(myInts, 9)
+
+	fmt.Println(myInts)
+
+	for i := range myInts {
+		fmt.Println(myInts[i])
+	}
+
+	sort.Ints(myInts)
+	fmt.Println(myInts)
 }
