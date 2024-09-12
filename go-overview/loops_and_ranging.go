@@ -6,44 +6,49 @@ import (
 )
 
 func main() {
+	// Loop through even numbers from 0 to 8
 	for i := 0; i < 10; i += 2 {
 		fmt.Print(i, " ")
 	}
-	fmt.Println()
+	fmt.Println() // Newline after printing numbers
 
-	//animals := []string{"cat", "dog", "lion", "tiger", "none"}
+	// Map of car brands and models
+	cars := map[string]string{
+		"Volvo":    "XC90",
+		"Suzuki":   "Wagon R",
+		"Mahindra": "Scorpio",
+		"Toyota":   "Corolla",
+		"Honda":    "Civic",
+	}
 
-	cars := make(map[string]string)
-	cars["volvo"] = "Volvo"
-	cars["suzuki"] = "Wagon r"
-	cars["Mahindra"] = "Scorpion"
-	cars["Toyota"] = "Corolla"
-	cars["Honda"] = "Civic"
-
-	//for i, animal := range animals {
-	//	fmt.Println(i+1, " ", animal)
-	//}
-
+	// Print car models using range
 	for _, car := range cars {
 		fmt.Print(car, ", ")
 	}
-	for brand, car := range cars {
-		fmt.Println(brand, " makes ", car)
+	fmt.Println()
+
+	// Print car brands and their respective models
+	for brand, model := range cars {
+		fmt.Printf("%s makes %s\n", brand, model)
 	}
 
+	// Define a User struct
 	type User struct {
 		Name  string
 		Age   int
 		Email string
 	}
 
-	var users = []User{}
-	users = append(users, User{"John", 25, "john@gmail.com"})
-	users = append(users, User{"Wick", 18, "wick@gmail.com"})
-	users = append(users, User{"Johnny", 32, "johnny@gmail.com"})
-	users = append(users, User{"Wicky", 29, "wicky@gmail.com"})
+	// Slice of User structs
+	users := []User{
+		{"John", 25, "john@gmail.com"},
+		{"Wick", 18, "wick@gmail.com"},
+		{"Johnny", 32, "johnny@gmail.com"},
+		{"Wicky", 29, "wicky@gmail.com"},
+	}
 
-	for _, currentUser := range users {
-		log.Println(currentUser.Name, " is ", currentUser.Age, " years old.\n", "Email is ", currentUser.Email, "\n")
+	// Loop through users and log their details
+	for _, user := range users {
+		log.Printf("%s is %d years old. Email: %s\n", user.Name, user.Age, user.Email)
 	}
 }
