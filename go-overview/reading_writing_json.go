@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-type Person struct {
+type Persons struct {
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 	Age       int    `json:"age"`
@@ -30,7 +30,7 @@ func main() {
 	}
 ]`
 
-	var unmarshalled []Person
+	var unmarshalled []Persons
 
 	err := json.Unmarshal([]byte(myJson), &unmarshalled)
 
@@ -41,9 +41,9 @@ func main() {
 	log.Printf("Unmarshalled: %v", unmarshalled)
 
 	// write json from a struct
-	var myPeople []Person
+	var myPeople []Persons
 
-	var p1 Person
+	var p1 Persons
 	p1.FirstName = "Prince"
 	p1.LastName = "Tomar"
 	p1.Age = 21
@@ -51,7 +51,7 @@ func main() {
 
 	myPeople = append(myPeople, p1)
 
-	var p3 Person
+	var p3 Persons
 	p3.FirstName = "A"
 	p3.LastName = "B"
 	p3.Age = 19

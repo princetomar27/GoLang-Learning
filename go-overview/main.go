@@ -1,29 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"log"
+)
 
-func main(){
-	fmt.Println("Hello World !")
+func main() {
+	result, err := divide(100, 0)
+	if err != nil {
+		log.Println(err)
+		return
+	}
 
-	// var name string
-	// name = "Prince"
-
-	// var i int
-	// i = 21
-
-
-	// fmt.Println("This world is cruel",name)
-	// fmt.Println("You are",i,"years old.")
-
-	// whatWasSaid,age,measure := saySomething()
-	
-	// fmt.Println(whatWasSaid,age,measure)
-
-	// pointersMain()
-
-	typesAndStructs()
+	log.Println("result of division is", result)
 }
 
-func saySomething() (string,int,string){
-	return "Good Bye!",10,"years old"
+func divide(x, y float32) (float32, error) {
+	var result float32
+	if y == 0 {
+		return result, errors.New("cannot divide by 0")
+	}
+	result = x / y
+	return result, nil
 }
