@@ -1,24 +1,22 @@
-package main
+package handlers
 
 import (
 	"errors"
 	"fmt"
-	"html/template"
+	"github.com/princetomar27/basic_web_application/pkg/render"
 	"net/http"
 )
 
-var postNum = ":8080"
-
 func Home(w http.ResponseWriter, r *http.Request) {
 	//_, _ = fmt.Fprintf(w, "this is the home page")
-	renderTemplate(w, "home.page.tmpl")
+	render.RenderTemplate(w, "home.page.tmpl")
 }
 
 func About(w http.ResponseWriter, r *http.Request) {
 
 	//sum := addValues(3, 4)
 	//_, _ = fmt.Fprintf(w, fmt.Sprintf("This is the about page and sum is %d", sum))
-	renderTemplate(w, "about.page.tmpl")
+	render.RenderTemplate(w, "about.page.tmpl")
 }
 
 func addValues(x, y int) int {
@@ -45,24 +43,4 @@ func Divide(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintf(w, fmt.Sprintf("100 / 10 = %f", f))
-}
-
-func renderTemplate(w http.ResponseWriter, tmpl string) {
-
-	parsedTemplate, _ := template.ParseFiles("./templates/" + tmpl)
-	err := parsedTemplate.Execute(w, nil)
-	if err != nil {
-		fmt.Println("Error parsing template", err)
-		return
-	}
-}
-
-func main() {
-
-	http.HandleFunc("/", Home)
-	http.HandleFunc("/about", About)
-	http.HandleFunc("/divide", Divide)
-
-	fmt.Println(fmt.Sprintf("Server is running on %s", postNum))
-	_ = http.ListenAndServe(postNum, nil) // Start listening to the server
 }
