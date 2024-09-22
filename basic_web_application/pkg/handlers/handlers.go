@@ -3,20 +3,44 @@ package handlers
 import (
 	"errors"
 	"fmt"
+	"github.com/princetomar27/basic_web_application/pkg/config"
 	"github.com/princetomar27/basic_web_application/pkg/render"
 	"net/http"
 )
 
-func Home(w http.ResponseWriter, r *http.Request) {
-	//_, _ = fmt.Fprintf(w, "this is the home page")
-	render.RenderTemplate(w, "home.page.tmpl")
+var Repo *Repository
+
+type Repository struct {
+	App *config.AppConfig
 }
 
-func About(w http.ResponseWriter, r *http.Request) {
+// NewRepo creates a new repository
+func NewRepo(a *config.AppConfig) *Repository {
+	return &Repository{
+		App: a,
+	}
+}
+
+// NewHandlers sets the repository for the handlers
+func NewHandlers(r *Repository) {
+	Repo = r
+}
+
+func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
+	//_, _ = fmt.Fprintf(w, "this is the home page")
+	//render.RenderTemplate(w, "home.page.tmpl")
+	render.RenderTemplateAdvanced(w, "home.page.tmpl")
+
+}
+
+func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 
 	//sum := addValues(3, 4)
 	//_, _ = fmt.Fprintf(w, fmt.Sprintf("This is the about page and sum is %d", sum))
-	render.RenderTemplate(w, "about.page.tmpl")
+	//render.RenderTemplate(w, "about.page.tmpl")
+
+	render.RenderTemplateAdvanced(w, "about.page.tmpl")
+
 }
 
 func addValues(x, y int) int {
