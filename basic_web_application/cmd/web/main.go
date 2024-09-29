@@ -37,7 +37,7 @@ func main() {
 
 	srv := &http.Server{
 		Addr:    postNum,
-		Handler: routes(&app),
+		Handler: chiRoutes(&app),
 	}
 
 	err = srv.ListenAndServe()
