@@ -13,6 +13,7 @@ func chiRoutes(app *config.AppConfig) http.Handler {
 	mux := chi.NewRouter()
 
 	mux.Use(middleware.Recoverer)
+	mux.Use(WriteToConsole)
 
 	// Register the routes
 	mux.Get("/", handlers.Repo.Home)
