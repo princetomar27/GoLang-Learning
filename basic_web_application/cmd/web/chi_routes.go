@@ -16,6 +16,7 @@ func chiRoutes(app *config.AppConfig) http.Handler {
 	//mux.Use(WriteToConsole)
 
 	mux.Use(NoSurve)
+	mux.Use(SessionLoad)
 
 	// Register the routes
 	mux.Get("/", handlers.Repo.Home)

@@ -1,6 +1,9 @@
 package config
 
-import "html/template"
+import (
+	"github.com/alexedwards/scs/v2"
+	"html/template"
+)
 
 // THIS PACKAGE IS IMPORTED IN OTHER PARTS OF THE APPLICATION
 // BUT THIS ISN'T IMPORTING ANYTHING
@@ -9,4 +12,6 @@ import "html/template"
 type AppConfig struct {
 	UseCache      bool
 	TemplateCache map[string]*template.Template
+	InProduction  bool
+	Session       *scs.SessionManager
 }

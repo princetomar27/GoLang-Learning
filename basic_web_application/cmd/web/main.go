@@ -2,18 +2,33 @@ package main
 
 import (
 	"fmt"
+	"github.com/alexedwards/scs/v2"
 	"github.com/princetomar27/basic_web_application/pkg/config"
 	"github.com/princetomar27/basic_web_application/pkg/handlers"
 	"github.com/princetomar27/basic_web_application/pkg/render"
 	"log"
 	"net/http"
+	"time"
 )
 
 var postNum = ":8080"
+var app config.AppConfig
+var session *scs.SessionManager
 
 func main() {
 
-	var app config.AppConfig
+	// Update to true, when app is in production
+	app.InProduction = false
+
+	session = scs.New()
+	session.Lifetime = 24 * time.Hour
+	// Set some parameters for our cookie
+	session.Cookie.Persist = true
+	session.Cookie.SameSite = http.SameSiteLaxMode
+	session.Cookie.Secure = app.InProduction
+
+	app.Session = session
+
 	tc, err := render.CreateCompTemplateCache()
 	if err != nil {
 		log.Fatal("Got error while creating template cache : ", err)
