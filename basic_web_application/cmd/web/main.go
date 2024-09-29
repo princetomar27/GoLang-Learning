@@ -29,9 +29,18 @@ func main() {
 	handlers.NewHandlers(repo)
 	render.NewTemplates(&app)
 
-	http.HandleFunc("/", handlers.Repo.Home)
-	http.HandleFunc("/about", handlers.Repo.About)
+	//http.HandleFunc("/", handlers.Repo.Home)
+	//http.HandleFunc("/about", handlers.Repo.About)
 
 	fmt.Println(fmt.Sprintf("Server is running on %s", postNum))
-	_ = http.ListenAndServe(postNum, nil) // Start listening to the server
+	//_ = http.ListenAndServe(postNum, nil) // Start listening to the server
+
+	srv := &http.Server{
+		Addr:    postNum,
+		Handler: routes(&app),
+	}
+
+	err = srv.ListenAndServe()
+	log.Fatal(err)
+
 }

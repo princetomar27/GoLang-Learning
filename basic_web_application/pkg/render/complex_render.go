@@ -3,6 +3,7 @@ package render
 import (
 	"bytes"
 	"github.com/princetomar27/basic_web_application/pkg/config"
+	"github.com/princetomar27/basic_web_application/pkg/models"
 	"html/template"
 	"log"
 	"net/http"
@@ -16,7 +17,11 @@ func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-func RenderTemplateAdvanced(w http.ResponseWriter, tmpl string) {
+func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+	return td
+}
+
+func RenderTemplateAdvanced(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
 
 	var tc map[string]*template.Template
 	if app.UseCache {
@@ -32,7 +37,8 @@ func RenderTemplateAdvanced(w http.ResponseWriter, tmpl string) {
 	}
 	// Get the value from the map as buffer and execute it directly : FOR FINER GRAINED ERROR CHECKING
 	buf := new(bytes.Buffer)
-	_ = t.Execute(buf, nil)
+	td = AddDefaultData(td)
+	_ = t.Execute(buf, td)
 
 	// render the template
 	_, err := buf.WriteTo(w)

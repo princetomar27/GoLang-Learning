@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/princetomar27/basic_web_application/pkg/config"
+	"github.com/princetomar27/basic_web_application/pkg/models"
 	"github.com/princetomar27/basic_web_application/pkg/render"
 	"net/http"
 )
@@ -29,17 +30,20 @@ func NewHandlers(r *Repository) {
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	//_, _ = fmt.Fprintf(w, "this is the home page")
 	//render.RenderTemplate(w, "home.page.tmpl")
-	render.RenderTemplateAdvanced(w, "home.page.tmpl")
+	render.RenderTemplateAdvanced(w, "home.page.tmpl", &models.TemplateData{})
 
 }
 
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 
-	//sum := addValues(3, 4)
-	//_, _ = fmt.Fprintf(w, fmt.Sprintf("This is the about page and sum is %d", sum))
-	//render.RenderTemplate(w, "about.page.tmpl")
+	// perform some business logic here
+	stringMap := make(map[string]string)
+	stringMap["hello"] = "Hello, again."
 
-	render.RenderTemplateAdvanced(w, "about.page.tmpl")
+	// send the data to the template
+	render.RenderTemplateAdvanced(w, "about.page.tmpl", &models.TemplateData{
+		StringMap: stringMap,
+	})
 
 }
 
